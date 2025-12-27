@@ -1,50 +1,109 @@
-# Welcome to your Expo app 👋
+# Ingenious TV
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern live TV streaming application built with React Native and Expo. Stream your favorite live TV channels with an intuitive and feature-rich interface.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Live TV Streaming**: Watch live TV channels in high quality
+- **Channel Browsing**: Discover featured channels and explore the full catalog
+- **Video Player**: Full-featured player with playback controls
+- **Responsive Design**: Optimized for both portrait and landscape viewing
+- **Cross-Platform**: Works on iOS, Android, and web platforms
+- **Tab Navigation**: Easy navigation between featured, explore, and settings
 
+## Tech Stack
+
+- **Framework**: [Expo](https://expo.dev) ~54.0
+- **Language**: TypeScript 5.9
+- **UI**: React Native 0.81
+- **Navigation**: Expo Router with file-based routing
+- **Video Playback**: Expo Video
+- **State Management**: React hooks and AsyncStorage
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- Yarn package manager
+- Expo CLI
+- iOS Simulator (for macOS) or Android Emulator
+
+### Installation
+
+1. Clone the repository and navigate to the project directory
+
+2. Install dependencies:
    ```bash
    yarn install
    ```
 
-2. Start the app
-
+3. Start the development server:
    ```bash
-   yarn expo start
+   yarn start
    ```
 
-In the output, you'll find options to open the app in a
+### Running the App
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+#### Development Build
+   ```bash
+   yarn android  # Run on Android
+   yarn ios      # Run on iOS
+   yarn web      # Run on web
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+#### Expo Go
+You can also run the app using [Expo Go](https://expo.dev/go) by scanning the QR code from the development server.
 
-## Get a fresh project
+## Project Structure
 
-When you're ready, run:
-
-```bash
-yarn reset-project
+```
+ingenious-tv/
+├── app/                    # App screens and navigation
+│   ├── (tabs)/            # Tab-based screens
+│   │   ├── index.tsx      # Home/Featured channels
+│   │   ├── explore.tsx    # Explore channels
+│   │   └── settings.tsx   # Settings screen
+│   ├── player.tsx         # Video player screen
+│   └── _layout.tsx        # Root layout
+├── components/            # Reusable components
+├── hooks/                 # Custom React hooks
+├── constants/            # App constants and configuration
+└── assets/               # Images, fonts, and other assets
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Building for Production
 
-## Learn more
+Build the app using EAS Build:
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+eas build --platform android
+eas build --platform ios
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Development
 
-## Join the community
+This project uses:
+- **File-based routing** with Expo Router
+- **TypeScript** for type safety
+- **ESLint** for code linting
 
-Join our community of developers creating universal apps.
+Start developing by editing files in the `app` directory. The app will automatically reload when you save changes.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Scripts
+
+- `yarn start` - Start the Expo development server
+- `yarn android` - Run on Android device/emulator
+- `yarn ios` - Run on iOS simulator
+- `yarn web` - Run in web browser
+- `yarn lint` - Run ESLint
+
+## License
+
+Private project
+
+## Learn More
+
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/)
+- [Expo Router Documentation](https://docs.expo.dev/router/introduction/)
