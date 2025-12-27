@@ -1,55 +1,58 @@
 {
-	"expo": {
-		"name": "Ingenious Streams",
-		"slug": "ingenious-streams",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/images/icon.png",
-		"scheme": "ingeniousstreams",
-		"userInterfaceStyle": "automatic",
-		"newArchEnabled": true,
-		"ios": {
-			"supportsTablet": true,
-			"bundleIdentifier": "com.anonymous.ingeniousstreams"
-		},
-		"android": {
-			"adaptiveIcon": {
-				"backgroundColor": "#FFFFFF",
-				"foregroundImage": "./assets/images/android-icon-192x192.png"
-			},
-			"edgeToEdgeEnabled": true,
-			"predictiveBackGestureEnabled": false,
-			"package": "com.anonymous.ingeniousstreams"
-		},
-		"web": {
-			"output": "static",
-			"favicon": "./assets/images/favicon-32x32.png"
-		},
-		"plugins": [
-			"expo-router",
-			[
-				"expo-splash-screen",
-				{
-					"image": "./assets/images/logo.png",
-					"imageWidth": 200,
-					"resizeMode": "contain",
-					"backgroundColor": "#FFFFFF",
-					"dark": {
-						"backgroundColor": "#020617"
-					}
-				}
-			],
-			"expo-video"
-		],
-		"experiments": {
-			"typedRoutes": true,
-			"reactCompiler": true
-		},
-		"extra": {
-			"router": {},
-			"eas": {
-				"projectId": "6ec8c89d-b096-430d-927d-317f705b704b"
-			}
-		}
-	}
+  "expo": {
+    "name": "Ingenious Streams",
+    "slug": "ingenious-tv",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "ingeniousstreams",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.ingeniousstreams",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/android-icon-192x192.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.ingeniousstreams"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon-32x32.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/logo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF",
+          "dark": {
+            "backgroundColor": "#020617"
+          }
+        }
+      ],
+      "expo-video"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6ec8c89d-b096-430d-927d-317f705b704b"
+      }
+    }
+  }
 }
