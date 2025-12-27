@@ -25,9 +25,7 @@ export const api = {
 	},
 
 	async fetchPlayerDetails(language: string, channelId: string) {
-		const url = getGithubDataUrl(
-			`tv/${channelId}.json`,
-		);
+		const url = getGithubDataUrl(`tv/${channelId}.json`);
 		const response = await fetch(url);
 		if (!response.ok) {
 			throw new Error(

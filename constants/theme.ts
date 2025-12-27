@@ -134,7 +134,9 @@ export const Fonts = Platform.select({
  * Helper function to create linear gradient configuration
  * For use with expo-linear-gradient or react-native-linear-gradient
  */
-export const createBrandGradient = (direction: "horizontal" | "vertical" = "horizontal") => ({
+export const createBrandGradient = (
+	direction: "horizontal" | "vertical" = "horizontal",
+) => ({
 	colors: [
 		BrandGradient.electricPurple,
 		BrandGradient.magentaPink,

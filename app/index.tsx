@@ -28,10 +28,7 @@ export default function HomeScreen() {
 
 					{isLoadingLanguages ? (
 						<View style={styles.loadingContainer}>
-							<ActivityIndicator
-								size="large"
-								color={CoreColors.primaryBlue}
-							/>
+							<ActivityIndicator size="large" color={CoreColors.primaryBlue} />
 						</View>
 					) : (
 						<FlatList

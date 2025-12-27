@@ -23,7 +23,6 @@ export default function LanguageDetailScreen() {
 	// Handle case where data is an array directly or an object with channels property
 	const channels = Array.isArray(data) ? data : data?.channels || [];
 
-
 	// Filter channels based on search query
 	const filteredChannels = React.useMemo(() => {
 		if (!searchQuery.trim()) {

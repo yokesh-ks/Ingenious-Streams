@@ -24,11 +24,7 @@ export function AppHeader({
 						style={styles.iconButton}
 						activeOpacity={0.7}
 					>
-						<IconSymbol
-							name="gearshape.fill"
-							size={24}
-							color="#FFFFFF"
-						/>
+						<IconSymbol name="gearshape.fill" size={24} color="#FFFFFF" />
 					</TouchableOpacity>
 				)}
 			</View>

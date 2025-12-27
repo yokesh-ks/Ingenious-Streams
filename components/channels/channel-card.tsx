@@ -32,7 +32,12 @@ export function ChannelCard({ channel, language }: ChannelCardProps) {
 			onPress={handlePress}
 			activeOpacity={0.7}
 		>
-			<View style={[styles.iconContainer, channel.logo && styles.iconContainerNoBackground]}>
+			<View
+				style={[
+					styles.iconContainer,
+					channel.logo && styles.iconContainerNoBackground,
+				]}
+			>
 				{channel.logo ? (
 					<Image source={{ uri: channel.logo }} style={styles.logo} />
 				) : (
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
 		marginRight: 12,
 	},
 	iconContainerNoBackground: {
-		backgroundColor: 'transparent',
+		backgroundColor: "transparent",
 	},
 	content: {
 		flex: 1,
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
 	logo: {
 		width: 40,
 		height: 40,
-		resizeMode: 'cover',
+		resizeMode: "cover",
 	},
 	chevron: {
 		marginLeft: 8,
