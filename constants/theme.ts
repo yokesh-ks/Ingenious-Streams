@@ -82,40 +82,23 @@ export const TabBarColors = {
 } as const;
 
 /**
- * Unified Colors object for light/dark mode support
+ * Unified Colors object for dark mode support
  * Compatible with Expo useColorScheme hook
  */
 export const Colors = {
-	light: {
-		text: TypographyColors.charcoal,
-		background: NeutralColors.background.pureWhite,
-		tint: CoreColors.primaryBlue,
-		icon: TypographyColors.slateGray,
-		tabIconDefault: TypographyColors.coolGray,
-		tabIconSelected: CoreColors.primaryBlue,
-		card: NeutralColors.background.snow,
-		border: NeutralColors.border.slateLight,
-		// Status colors
-		error: StatusColors.error,
-		warning: StatusColors.warning,
-		success: StatusColors.liveIndicator,
-		info: StatusColors.info,
-	},
-	dark: {
-		text: DarkModeColors.primaryText,
-		background: DarkModeColors.background,
-		tint: CoreColors.primaryBlue,
-		icon: DarkModeColors.secondaryText,
-		tabIconDefault: DarkModeColors.secondaryText,
-		tabIconSelected: CoreColors.primaryBlue,
-		card: DarkModeColors.card,
-		border: "#1E293B",
-		// Status colors
-		error: StatusColors.error,
-		warning: StatusColors.warning,
-		success: StatusColors.liveIndicator,
-		info: StatusColors.info,
-	},
+	text: DarkModeColors.primaryText,
+	background: DarkModeColors.background,
+	tint: CoreColors.primaryBlue,
+	icon: DarkModeColors.secondaryText,
+	tabIconDefault: DarkModeColors.secondaryText,
+	tabIconSelected: CoreColors.primaryBlue,
+	card: DarkModeColors.card,
+	border: "#1E293B",
+	// Status colors
+	error: StatusColors.error,
+	warning: StatusColors.warning,
+	success: StatusColors.liveIndicator,
+	info: StatusColors.info,
 } as const;
 
 /**

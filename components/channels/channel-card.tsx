@@ -1,11 +1,11 @@
-import * as Haptics from "expo-haptics";
-import { useRouter } from "expo-router";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { CATEGORY_COLORS } from "@/constants/categories";
 import { CoreColors } from "@/constants/theme";
 import type { Channel } from "@/types/channel";
+import * as Haptics from "expo-haptics";
+import { useRouter } from "expo-router";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 interface ChannelCardProps {
 	channel: Channel;
@@ -32,37 +32,22 @@ export function ChannelCard({ channel, language }: ChannelCardProps) {
 			onPress={handlePress}
 			activeOpacity={0.7}
 		>
-			<View style={styles.iconContainer}>
-				<IconSymbol
-					name="play.tv.fill"
-					size={36}
-					color={CoreColors.primaryBlue}
-				/>
+			<View style={[styles.iconContainer, channel.logo && styles.iconContainerNoBackground]}>
+				{channel.logo ? (
+					<Image source={{ uri: channel.logo }} style={styles.logo} />
+				) : (
+					<IconSymbol
+						name="play.tv.fill"
+						size={32}
+						color={CoreColors.primaryBlue}
+					/>
+				)}
 			</View>
 
 			<View style={styles.content}>
 				<View style={styles.header}>
 					<ThemedText style={styles.name} numberOfLines={1}>
 						{channel.name}
-					</ThemedText>
-				</View>
-
-				<View style={styles.metadata}>
-					{channel.language && (
-						<View style={styles.metadataItem}>
-							<IconSymbol
-								name="globe"
-								size={12}
-								color="rgba(255, 255, 255, 0.6)"
-							/>
-							<ThemedText style={styles.metadataText}>
-								{channel.language}
-							</ThemedText>
-						</View>
-					)}
-					<View style={styles.categoryDot} />
-					<ThemedText style={styles.metadataText}>
-						{channel.categoryId}
 					</ThemedText>
 				</View>
 			</View>
@@ -91,13 +76,16 @@ const styles = StyleSheet.create({
 		minHeight: 100,
 	},
 	iconContainer: {
-		width: 64,
-		height: 64,
-		borderRadius: 12,
+		width: 48,
+		height: 48,
+		borderRadius: 8,
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "rgba(37, 99, 235, 0.15)",
-		marginRight: 16,
+		backgroundColor: "rgba(255, 255, 255, 0.05)",
+		marginRight: 12,
+	},
+	iconContainerNoBackground: {
+		backgroundColor: 'transparent',
 	},
 	content: {
 		flex: 1,
@@ -134,6 +122,11 @@ const styles = StyleSheet.create({
 		borderRadius: 2.5,
 		marginRight: 6,
 		backgroundColor: CoreColors.primaryBlue,
+	},
+	logo: {
+		width: 40,
+		height: 40,
+		resizeMode: 'cover',
 	},
 	chevron: {
 		marginLeft: 8,

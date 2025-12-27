@@ -40,11 +40,11 @@ export interface PlayerState {
 }
 
 export interface Settings {
-	theme: "light" | "dark" | "system";
+	theme: "dark" | "system";
 	videoQuality: "auto" | "1080p" | "720p" | "480p";
 	parentalControlsEnabled: boolean;
 	parentalControlsPin?: string;
 }
 
 export type VideoQuality = "auto" | "1080p" | "720p" | "480p";
-export type Theme = "light" | "dark" | "system";
+export type Theme = "dark" | "system";

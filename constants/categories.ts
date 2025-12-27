@@ -35,4 +35,4 @@ export const VIDEO_QUALITY_OPTIONS: VideoQuality[] = [
 	"480p",
 ];
 
-export const THEME_OPTIONS: Theme[] = ["light", "dark", "system"];
+export const THEME_OPTIONS: Theme[] = ["dark", "system"];

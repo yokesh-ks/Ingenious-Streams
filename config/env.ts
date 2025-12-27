@@ -12,6 +12,5 @@ export const getGithubDataUrl = (path: string) => {
 		GITHUB_REPO_NAME,
 		GITHUB_BRANCH_REF,
 	} = env;
-	const branch = GITHUB_BRANCH_REF.replace("refs/heads/", "");
-	return `${GITHUB_RAW_DATA_URL}/${GITHUB_USER_NAME}/${GITHUB_REPO_NAME}/${branch}/${path}`;
+	return `${GITHUB_RAW_DATA_URL}/${GITHUB_USER_NAME}/${GITHUB_REPO_NAME}/${GITHUB_BRANCH_REF}/${path}`;
 };

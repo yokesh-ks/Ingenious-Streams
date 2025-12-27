@@ -1,3 +1,8 @@
+import { LanguageCardHorizontal } from "@/components/channels/language-card-horizontal";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
+import { CoreColors } from "@/constants/theme";
+import { useChannels } from "@/hooks/use-channels";
 import { useRouter } from "expo-router";
 import {
 	ActivityIndicator,
@@ -6,11 +11,6 @@ import {
 	StyleSheet,
 	View,
 } from "react-native";
-import { LanguageCardHorizontal } from "@/components/channels/language-card-horizontal";
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
-import { CoreColors } from "@/constants/theme";
-import { useChannels } from "@/hooks/use-channels";
 
 export default function HomeScreen() {
 	const { languages, isLoadingLanguages } = useChannels();
@@ -39,9 +39,9 @@ export default function HomeScreen() {
 							data={languages}
 							renderItem={({ item }) => (
 								<LanguageCardHorizontal
-									language={item.language || item}
+									language={item.name}
 									channelCount={item.channelCount}
-									onPress={() => handleLanguagePress(item.language || item)}
+									onPress={() => handleLanguagePress(item.slug)}
 								/>
 							)}
 							keyExtractor={(item) => item.language || item}

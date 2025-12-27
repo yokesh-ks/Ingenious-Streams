@@ -3,10 +3,10 @@ import { SearchBar } from "@/components/channels/search-bar";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { api } from "@/services/api";
-import { useLocalSearchParams, Stack } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
-import { StyleSheet, View } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
 import React from "react";
+import { StyleSheet, View } from "react-native";
 
 export default function LanguageDetailScreen() {
 	const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -20,31 +20,23 @@ export default function LanguageDetailScreen() {
 		enabled: !!language,
 	});
 
-	console.log("Language:", language);
-	console.log("Data:", data);
-	console.log("Is Loading:", isLoading);
-	console.log("Error:", error);
-
 	// Handle case where data is an array directly or an object with channels property
 	const channels = Array.isArray(data) ? data : data?.channels || [];
-	const activeChannels = channels.filter((channel) => channel.isActive);
 
-	console.log("Channels:", channels);
-	console.log("Active Channels:", activeChannels);
 
 	// Filter channels based on search query
 	const filteredChannels = React.useMemo(() => {
 		if (!searchQuery.trim()) {
-			return activeChannels;
+			return channels;
 		}
 
 		const query = searchQuery.toLowerCase();
-		return activeChannels.filter(
+		return channels.filter(
 			(ch) =>
 				ch.name.toLowerCase().includes(query) ||
 				ch.language?.toLowerCase().includes(query),
 		);
-	}, [activeChannels, searchQuery]);
+	}, [channels, searchQuery]);
 
 	// Show loading state
 	if (isLoading) {
@@ -88,7 +80,7 @@ export default function LanguageDetailScreen() {
 			<ThemedView style={styles.container}>
 				<View style={styles.header}>
 					<ThemedText style={styles.subtitle}>
-						{activeChannels.length} channels available
+						{channels.length} channels available
 					</ThemedText>
 				</View>
 
