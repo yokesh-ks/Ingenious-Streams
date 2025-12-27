@@ -10,18 +10,13 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Collapsible } from "@/components/ui/collapsible";
 import { THEME_OPTIONS, VIDEO_QUALITY_OPTIONS } from "@/constants/categories";
+import { NetflixColors } from "@/constants/theme";
 import { useSettings } from "@/hooks/use-settings";
-import { useThemeColor } from "@/hooks/use-theme-color";
 import type { Theme, VideoQuality } from "@/types/channel";
 
 export default function SettingsScreen() {
 	const { settings, updateTheme, updateVideoQuality, toggleParentalControls } =
 		useSettings();
-	const tintColor = useThemeColor({}, "tint");
-	const borderColor = useThemeColor(
-		{ light: "#E5E5E5", dark: "#333" },
-		"tabIconDefault",
-	);
 
 	const renderThemeOption = (theme: Theme) => {
 		const isSelected = settings.theme === theme;
@@ -31,14 +26,21 @@ export default function SettingsScreen() {
 				style={[
 					styles.optionButton,
 					{
-						borderColor: isSelected ? tintColor : borderColor,
-						backgroundColor: isSelected ? `${tintColor}20` : "transparent",
+						borderColor: isSelected
+							? NetflixColors.accent.primary
+							: NetflixColors.border.default,
+						backgroundColor: isSelected
+							? `${NetflixColors.accent.primary}20`
+							: "transparent",
 					},
 				]}
 				onPress={() => updateTheme(theme)}
 			>
 				<ThemedText
-					style={[styles.optionText, isSelected && { color: tintColor }]}
+					style={[
+						styles.optionText,
+						isSelected && { color: NetflixColors.accent.primary },
+					]}
 				>
 					{theme.charAt(0).toUpperCase() + theme.slice(1)}
 				</ThemedText>
@@ -54,14 +56,21 @@ export default function SettingsScreen() {
 				style={[
 					styles.optionButton,
 					{
-						borderColor: isSelected ? tintColor : borderColor,
-						backgroundColor: isSelected ? `${tintColor}20` : "transparent",
+						borderColor: isSelected
+							? NetflixColors.accent.primary
+							: NetflixColors.border.default,
+						backgroundColor: isSelected
+							? `${NetflixColors.accent.primary}20`
+							: "transparent",
 					},
 				]}
 				onPress={() => updateVideoQuality(quality)}
 			>
 				<ThemedText
-					style={[styles.optionText, isSelected && { color: tintColor }]}
+					style={[
+						styles.optionText,
+						isSelected && { color: NetflixColors.accent.primary },
+					]}
 				>
 					{quality.toUpperCase()}
 				</ThemedText>
@@ -72,15 +81,6 @@ export default function SettingsScreen() {
 	return (
 		<ThemedView style={styles.container}>
 			<ScrollView contentContainerStyle={styles.scrollContent}>
-				<View style={styles.header}>
-					<ThemedText type="title" style={styles.title}>
-						Settings
-					</ThemedText>
-					<ThemedText style={styles.subtitle}>
-						Customize your viewing experience
-					</ThemedText>
-				</View>
-
 				<View style={styles.section}>
 					<Collapsible title="Appearance">
 						<View style={styles.sectionContent}>
@@ -118,9 +118,14 @@ export default function SettingsScreen() {
 								<Switch
 									value={settings.parentalControlsEnabled}
 									onValueChange={toggleParentalControls}
-									trackColor={{ false: "#767577", true: `${tintColor}80` }}
+									trackColor={{
+										false: NetflixColors.text.disabled,
+										true: `${NetflixColors.accent.primary}80`,
+									}}
 									thumbColor={
-										settings.parentalControlsEnabled ? tintColor : "#f4f3f4"
+										settings.parentalControlsEnabled
+											? NetflixColors.accent.primary
+											: "#f4f3f4"
 									}
 								/>
 							</View>
@@ -165,21 +170,11 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: NetflixColors.background.secondary,
 	},
 	scrollContent: {
+		paddingTop: 16,
 		paddingBottom: 40,
-	},
-	header: {
-		paddingHorizontal: 16,
-		paddingTop: 60,
-		paddingBottom: 16,
-	},
-	title: {
-		marginBottom: 8,
-	},
-	subtitle: {
-		fontSize: 16,
-		opacity: 0.6,
 	},
 	section: {
 		marginBottom: 8,
@@ -189,7 +184,7 @@ const styles = StyleSheet.create({
 	},
 	sectionDescription: {
 		fontSize: 14,
-		opacity: 0.7,
+		color: NetflixColors.text.secondary,
 		marginBottom: 16,
 	},
 	optionsGrid: {
@@ -223,7 +218,7 @@ const styles = StyleSheet.create({
 	},
 	infoLabel: {
 		fontSize: 15,
-		opacity: 0.7,
+		color: NetflixColors.text.secondary,
 	},
 	infoValue: {
 		fontSize: 15,

@@ -6,28 +6,24 @@ import { useThemeColor } from "@/hooks/use-theme-color";
 
 interface LanguageCardProps {
 	language: string;
-	channelCount: number;
 	onPress: () => void;
 }
 
+// Netflix-appropriate language colors (darker, more saturated tones)
 const LANGUAGE_COLORS: Record<string, string> = {
-	Hindi: "#FF6B6B",
-	English: "#4ECDC4",
-	Tamil: "#45B7D1",
-	Telugu: "#FFA07A",
-	Kannada: "#98D8C8",
-	Malayalam: "#F7DC6F",
-	Bengali: "#BB8FCE",
-	Marathi: "#85C1E2",
-	Punjabi: "#F8B739",
-	Gujarati: "#52B788",
+	Hindi: "#C11119", // Deep red
+	English: "#DB202C", // Netflix red variant
+	Tamil: "#8B0000", // Dark red
+	Telugu: "#B8860B", // Dark golden
+	Kannada: "#8B4513", // Saddle brown
+	Malayalam: "#2F4F4F", // Dark slate gray
+	Bengali: "#483D8B", // Dark slate blue
+	Marathi: "#8B008B", // Dark magenta
+	Punjabi: "#CD5C5C", // Indian red
+	Gujarati: "#556B2F", // Dark olive green
 };
 
-export function LanguageCard({
-	language,
-	channelCount,
-	onPress,
-}: LanguageCardProps) {
+export function LanguageCard({ language, onPress }: LanguageCardProps) {
 	const _textColor = useThemeColor({}, "text");
 	const borderColor = useThemeColor(
 		{ light: "#e5e5e5", dark: "#333" },
@@ -54,9 +50,6 @@ export function LanguageCard({
 
 			<ThemedText style={styles.language} numberOfLines={1}>
 				{language}
-			</ThemedText>
-			<ThemedText style={styles.count}>
-				{channelCount} {channelCount === 1 ? "ch" : "channels"}
 			</ThemedText>
 		</TouchableOpacity>
 	);
@@ -85,11 +78,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: "700",
 		marginBottom: 4,
-		textAlign: "center",
-	},
-	count: {
-		fontSize: 13,
-		opacity: 0.6,
 		textAlign: "center",
 	},
 });

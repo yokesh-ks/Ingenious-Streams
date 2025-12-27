@@ -1,12 +1,46 @@
+import { useQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import channelData from "@/data/channels.json";
+import { api } from "@/services/api";
 import type { Category, Channel, ChannelData } from "@/types/channel";
 
 export function useChannels() {
-	const [data] = useState<ChannelData>(channelData as ChannelData);
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 	const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 	const [searchQuery, setSearchQuery] = useState("");
+
+	// Fetch language metadata first
+	const {
+		data: languageMetadata,
+		isLoading: isLoadingLanguages,
+		error: languageError,
+	} = useQuery({
+		queryKey: ["languageMetadata"],
+		queryFn: api.fetchLanguageMetadata,
+		retry: false,
+	});
+
+	// Fetch channel data for selected language
+	const {
+		data: fetchedData,
+		isLoading: isLoadingChannels,
+		error: channelError,
+	} = useQuery<ChannelData>({
+		queryKey: ["channelData", selectedLanguage],
+		queryFn: () => api.fetchChannelData(selectedLanguage!),
+		retry: false,
+		enabled: !!selectedLanguage,
+	});
+
+	const data: ChannelData = fetchedData || {
+		version: "0.0.0",
+		lastUpdated: "",
+		categories: [],
+		channels: [],
+		featured: [],
+	};
+
+	const isLoading = isLoadingLanguages || isLoadingChannels;
+	const error = languageError || channelError;
 
 	// Get all categories
 	const categories = useMemo(() => data.categories, [data]);
@@ -14,21 +48,18 @@ export function useChannels() {
 	// Get all channels
 	const allChannels = useMemo(() => data.channels, [data]);
 
-	// Get unique languages with channel counts
+	// Get unique languages with channel counts from metadata
 	const languages = useMemo(() => {
-		const languageMap = new Map<string, number>();
-		allChannels.forEach((channel) => {
-			if (channel.language && channel.isActive) {
-				languageMap.set(
-					channel.language,
-					(languageMap.get(channel.language) || 0) + 1,
-				);
-			}
-		});
-		return Array.from(languageMap.entries())
-			.map(([language, count]) => ({ language, count }))
-			.sort((a, b) => b.count - a.count);
-	}, [allChannels]);
+		// Handle case where languageMetadata is an array directly
+		if (Array.isArray(languageMetadata)) {
+			return languageMetadata;
+		}
+		// Handle case where languageMetadata is an object with a languages property
+		if (languageMetadata?.languages) {
+			return languageMetadata.languages;
+		}
+		return [];
+	}, [languageMetadata]);
 
 	// Get featured channels
 	const featuredChannels = useMemo(() => {
@@ -103,5 +134,10 @@ export function useChannels() {
 		getChannelById,
 		getCategoryById,
 		getChannelsForCategory,
+		isLoading,
+		isLoadingLanguages,
+		isLoadingChannels,
+		error,
+		languageMetadata,
 	};
 }

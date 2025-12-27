@@ -10,7 +10,7 @@ export function useSettings() {
 	// Load settings on mount
 	useEffect(() => {
 		loadSettings();
-	}, [loadSettings]);
+	}, []);
 
 	const loadSettings = async () => {
 		try {

@@ -1,7 +1,7 @@
 import { FlatList, RefreshControl, StyleSheet } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { NetflixColors } from "@/constants/theme";
 import type { Channel } from "@/types/channel";
 import { ChannelCard } from "./channel-card";
 
@@ -10,6 +10,7 @@ interface ChannelListProps {
 	onRefresh?: () => void;
 	refreshing?: boolean;
 	emptyMessage?: string;
+	language?: string;
 }
 
 export function ChannelList({
@@ -17,11 +18,10 @@ export function ChannelList({
 	onRefresh,
 	refreshing = false,
 	emptyMessage = "No channels found",
+	language,
 }: ChannelListProps) {
-	const tintColor = useThemeColor({}, "tint");
-
 	const renderItem = ({ item }: { item: Channel }) => (
-		<ChannelCard channel={item} />
+		<ChannelCard channel={item} language={language} />
 	);
 
 	const renderEmpty = () => (
@@ -53,7 +53,7 @@ export function ChannelList({
 					<RefreshControl
 						refreshing={refreshing}
 						onRefresh={onRefresh}
-						tintColor={tintColor}
+						tintColor={NetflixColors.accent.primary}
 					/>
 				) : undefined
 			}
@@ -63,16 +63,16 @@ export function ChannelList({
 
 const styles = StyleSheet.create({
 	contentContainer: {
-		paddingVertical: 8,
+		paddingVertical: 12,
 	},
 	emptyContainer: {
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
-		paddingVertical: 60,
+		paddingVertical: 80,
 	},
 	emptyText: {
 		fontSize: 16,
-		opacity: 0.6,
+		color: NetflixColors.text.secondary,
 	},
 });

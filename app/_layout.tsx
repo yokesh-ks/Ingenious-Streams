@@ -1,39 +1,73 @@
-import {
-	DarkTheme,
-	DefaultTheme,
-	ThemeProvider,
-} from "@react-navigation/native";
-import { Stack } from "expo-router";
+import { DarkTheme, ThemeProvider } from "@react-navigation/native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { TouchableOpacity } from "react-native";
+import { IconSymbol } from "@/components/ui/icon-symbol";
 import "react-native-reanimated";
 
-import { useColorScheme } from "@/hooks/use-color-scheme";
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 1000 * 60 * 5, // 5 minutes
+			gcTime: 1000 * 60 * 30, // 30 minutes
+			retry: false,
+			refetchOnWindowFocus: false,
+		},
+	},
+});
 
-export const unstable_settings = {
-	anchor: "(tabs)",
-};
+function SettingsButton() {
+	const router = useRouter();
+	return (
+		<TouchableOpacity
+			onPress={() => router.push("/settings")}
+			style={{ padding: 8, marginRight: 8 }}
+		>
+			<IconSymbol name="gearshape.fill" size={24} color="#fff" />
+		</TouchableOpacity>
+	);
+}
 
 export default function RootLayout() {
-	const colorScheme = useColorScheme();
-
 	return (
-		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-			<Stack>
-				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-				<Stack.Screen
-					name="player"
-					options={{
-						headerShown: false,
-						presentation: "fullScreenModal",
-						animation: "fade",
+		<QueryClientProvider client={queryClient}>
+			<ThemeProvider value={DarkTheme}>
+				<Stack
+					screenOptions={{
+						headerStyle: {
+							backgroundColor: "#000",
+						},
+						headerTintColor: "#fff",
+						headerTitleStyle: {
+							fontWeight: "600",
+						},
 					}}
-				/>
-				<Stack.Screen
-					name="modal"
-					options={{ presentation: "modal", title: "Modal" }}
-				/>
-			</Stack>
-			<StatusBar style="auto" />
-		</ThemeProvider>
+				>
+					<Stack.Screen
+						name="index"
+						options={{
+							headerShown: true,
+							title: "IngeniousTV",
+							headerRight: () => <SettingsButton />,
+						}}
+					/>
+					<Stack.Screen name="explore" options={{ headerShown: true }} />
+					<Stack.Screen
+						name="settings"
+						options={{
+							presentation: "modal",
+							title: "Settings",
+							headerShown: true,
+						}}
+					/>
+					<Stack.Screen
+						name="modal"
+						options={{ presentation: "modal", title: "Modal" }}
+					/>
+				</Stack>
+				<StatusBar style="light" />
+			</ThemeProvider>
+		</QueryClientProvider>
 	);
 }

@@ -1,29 +1,60 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * Netflix-inspired color palette for IngeniousTV
+ * Premium dark theme with Netflix red accents
  */
 
 import { Platform } from "react-native";
 
-const tintColorLight = "#0a7ea4";
-const tintColorDark = "#fff";
+// Netflix-inspired color palette
+export const NetflixColors = {
+	background: {
+		primary: "#000000", // Pure black
+		secondary: "#141414", // Netflix dark gray
+		card: "#181818", // Card/elevated surfaces
+		cardHover: "#2F2F2F", // Hover state
+		overlay: "#000000DD", // Overlay (87% opacity)
+	},
+	accent: {
+		primary: "#E50914", // Netflix red
+		hover: "#F40612", // Brighter red on hover
+		dark: "#831010", // Dark red
+	},
+	text: {
+		primary: "#FFFFFF", // Pure white
+		secondary: "#B3B3B3", // Gray text
+		muted: "#808080", // Dimmed text
+		disabled: "#595959", // Disabled text
+	},
+	border: {
+		default: "#333333", // Subtle borders
+		light: "#404040", // Light borders
+		focus: "#E50914", // Focus/accent border
+	},
+	status: {
+		error: "#E50914", // Error (Netflix red)
+		warning: "#FFA500", // Warning (Orange)
+		success: "#46D369", // Success (Green)
+		info: "#5A9FFF", // Info (Blue)
+	},
+};
 
+// Export unified Colors object (force Netflix theme for both light and dark)
 export const Colors = {
 	light: {
-		text: "#11181C",
-		background: "#fff",
-		tint: tintColorLight,
-		icon: "#687076",
-		tabIconDefault: "#687076",
-		tabIconSelected: tintColorLight,
+		text: NetflixColors.text.primary,
+		background: NetflixColors.background.primary,
+		tint: NetflixColors.accent.primary,
+		icon: NetflixColors.text.secondary,
+		tabIconDefault: NetflixColors.text.muted,
+		tabIconSelected: NetflixColors.accent.primary,
 	},
 	dark: {
-		text: "#ECEDEE",
-		background: "#151718",
-		tint: tintColorDark,
-		icon: "#9BA1A6",
-		tabIconDefault: "#9BA1A6",
-		tabIconSelected: tintColorDark,
+		text: NetflixColors.text.primary,
+		background: NetflixColors.background.primary,
+		tint: NetflixColors.accent.primary,
+		icon: NetflixColors.text.secondary,
+		tabIconDefault: NetflixColors.text.muted,
+		tabIconSelected: NetflixColors.accent.primary,
 	},
 };
 

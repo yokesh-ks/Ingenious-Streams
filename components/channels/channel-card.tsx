@@ -4,45 +4,40 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { CATEGORY_COLORS } from "@/constants/categories";
-import { useThemeColor } from "@/hooks/use-theme-color";
+import { NetflixColors } from "@/constants/theme";
 import type { Channel } from "@/types/channel";
 
 interface ChannelCardProps {
 	channel: Channel;
+	language?: string;
 }
 
-export function ChannelCard({ channel }: ChannelCardProps) {
+export function ChannelCard({ channel, language }: ChannelCardProps) {
 	const router = useRouter();
-	const backgroundColor = useThemeColor(
-		{ light: "#f5f5f5", dark: "#1a1a1a" },
-		"background",
-	);
-	const textColor = useThemeColor({}, "text");
-	const borderColor = useThemeColor(
-		{ light: "#e5e5e5", dark: "#333" },
-		"tabIconDefault",
-	);
 
 	const categoryColor =
 		CATEGORY_COLORS[channel.categoryId as keyof typeof CATEGORY_COLORS] ||
-		"#666";
+		NetflixColors.accent.primary;
 
 	const handlePress = () => {
 		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-		router.push({
-			pathname: "/player",
-			params: { channelId: channel.id },
-		});
+		const channelLanguage =
+			language || channel.language?.toLowerCase() || "unknown";
+		router.push(`/explore/language/${channelLanguage}/player?id=${channel.id}`);
 	};
 
 	return (
 		<TouchableOpacity
-			style={[styles.card, { backgroundColor, borderColor }]}
+			style={styles.card}
 			onPress={handlePress}
 			activeOpacity={0.7}
 		>
 			<View style={styles.iconContainer}>
-				<IconSymbol name="play.tv.fill" size={32} color={categoryColor} />
+				<IconSymbol
+					name="play.tv.fill"
+					size={36}
+					color={NetflixColors.accent.primary}
+				/>
 			</View>
 
 			<View style={styles.content}>
@@ -55,15 +50,17 @@ export function ChannelCard({ channel }: ChannelCardProps) {
 				<View style={styles.metadata}>
 					{channel.language && (
 						<View style={styles.metadataItem}>
-							<IconSymbol name="globe" size={12} color={`${textColor}80`} />
+							<IconSymbol
+								name="globe"
+								size={12}
+								color={NetflixColors.text.secondary}
+							/>
 							<ThemedText style={styles.metadataText}>
 								{channel.language}
 							</ThemedText>
 						</View>
 					)}
-					<View
-						style={[styles.categoryDot, { backgroundColor: categoryColor }]}
-					/>
+					<View style={styles.categoryDot} />
 					<ThemedText style={styles.metadataText}>
 						{channel.categoryId}
 					</ThemedText>
@@ -73,7 +70,7 @@ export function ChannelCard({ channel }: ChannelCardProps) {
 			<IconSymbol
 				name="chevron.right"
 				size={20}
-				color={`${textColor}40`}
+				color={NetflixColors.text.muted}
 				style={styles.chevron}
 			/>
 		</TouchableOpacity>
@@ -84,20 +81,23 @@ const styles = StyleSheet.create({
 	card: {
 		flexDirection: "row",
 		alignItems: "center",
-		padding: 12,
-		marginHorizontal: 16,
-		marginVertical: 6,
+		padding: 16,
+		marginHorizontal: 20,
+		marginVertical: 8,
 		borderRadius: 12,
 		borderWidth: 1,
+		backgroundColor: NetflixColors.background.card,
+		borderColor: NetflixColors.border.default,
+		minHeight: 100,
 	},
 	iconContainer: {
-		width: 56,
-		height: 56,
+		width: 64,
+		height: 64,
 		borderRadius: 12,
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#ffffff10",
-		marginRight: 12,
+		backgroundColor: `${NetflixColors.accent.primary}15`,
+		marginRight: 16,
 	},
 	content: {
 		flex: 1,
@@ -105,13 +105,14 @@ const styles = StyleSheet.create({
 	header: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginBottom: 6,
+		marginBottom: 8,
 	},
 	name: {
-		fontSize: 16,
-		fontWeight: "600",
+		fontSize: 17,
+		fontWeight: "700",
 		flex: 1,
 		marginRight: 8,
+		color: NetflixColors.text.primary,
 	},
 	metadata: {
 		flexDirection: "row",
@@ -124,15 +125,16 @@ const styles = StyleSheet.create({
 	},
 	metadataText: {
 		fontSize: 13,
-		opacity: 0.6,
+		color: NetflixColors.text.secondary,
 		marginLeft: 4,
 		textTransform: "capitalize",
 	},
 	categoryDot: {
-		width: 4,
-		height: 4,
-		borderRadius: 2,
+		width: 5,
+		height: 5,
+		borderRadius: 2.5,
 		marginRight: 6,
+		backgroundColor: NetflixColors.accent.primary,
 	},
 	chevron: {
 		marginLeft: 8,
