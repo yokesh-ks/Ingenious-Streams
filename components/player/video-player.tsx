@@ -1,8 +1,8 @@
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import type { Channel } from "@/types/channel";
 import { useVideoPlayer, type VideoSource, VideoView } from "expo-video";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import type { Channel } from "@/types/channel";
 
 interface VideoPlayerProps {
 	channel: Channel;
@@ -62,15 +62,18 @@ export function VideoPlayer({
 	}, [player, onError, onLoad, onLoadStart, onPlaybackStatusUpdate]);
 
 	useEffect(() => {
-		player.replace(videoSource);
-	}, [player.replace, videoSource]);
+		const loadVideo = async () => {
+			await player.replaceAsync(videoSource);
+		};
+		loadVideo();
+	}, [player.replaceAsync, videoSource]);
 
 	return (
 		<View style={styles.container}>
 			<VideoView
 				style={styles.video}
 				player={player}
-				allowsFullscreen
+				fullscreenOptions={{ enable: true }}
 				allowsPictureInPicture
 				nativeControls
 				contentFit="contain"

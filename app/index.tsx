@@ -44,7 +44,7 @@ export default function HomeScreen() {
 									onPress={() => handleLanguagePress(item.slug)}
 								/>
 							)}
-							keyExtractor={(item) => item.language || item}
+							keyExtractor={(item) => item.slug}
 							showsHorizontalScrollIndicator={false}
 							contentContainerStyle={styles.carousel}
 							snapToInterval={176} // cardWidth (160) + spacing (16)
