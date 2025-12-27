@@ -1,4 +1,4 @@
-# Ingenious TV
+# Ingenious Streams
 
 A modern live TV streaming application built with React Native and Expo. Stream your favorite live TV channels with an intuitive and feature-rich interface.
 
@@ -58,7 +58,7 @@ You can also run the app using [Expo Go](https://expo.dev/go) by scanning the QR
 ## Project Structure
 
 ```
-ingenious-tv/
+ingenious-streams/
 ├── app/                    # App screens and navigation
 │   ├── (tabs)/            # Tab-based screens
 │   │   ├── index.tsx      # Home/Featured channels

@@ -48,7 +48,7 @@ export default function RootLayout() {
 						name="index"
 						options={{
 							headerShown: true,
-							title: "IngeniousTV",
+							title: "Ingenious Streams",
 							headerRight: () => <SettingsButton />,
 						}}
 					/>

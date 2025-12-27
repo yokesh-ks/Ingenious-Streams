@@ -4,7 +4,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { CATEGORY_COLORS } from "@/constants/categories";
-import { NetflixColors } from "@/constants/theme";
+import { CoreColors } from "@/constants/theme";
 import type { Channel } from "@/types/channel";
 
 interface ChannelCardProps {
@@ -17,7 +17,7 @@ export function ChannelCard({ channel, language }: ChannelCardProps) {
 
 	const categoryColor =
 		CATEGORY_COLORS[channel.categoryId as keyof typeof CATEGORY_COLORS] ||
-		NetflixColors.accent.primary;
+		CoreColors.primaryBlue;
 
 	const handlePress = () => {
 		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -36,7 +36,7 @@ export function ChannelCard({ channel, language }: ChannelCardProps) {
 				<IconSymbol
 					name="play.tv.fill"
 					size={36}
-					color={NetflixColors.accent.primary}
+					color={CoreColors.primaryBlue}
 				/>
 			</View>
 
@@ -53,7 +53,7 @@ export function ChannelCard({ channel, language }: ChannelCardProps) {
 							<IconSymbol
 								name="globe"
 								size={12}
-								color={NetflixColors.text.secondary}
+								color="rgba(255, 255, 255, 0.6)"
 							/>
 							<ThemedText style={styles.metadataText}>
 								{channel.language}
@@ -70,7 +70,7 @@ export function ChannelCard({ channel, language }: ChannelCardProps) {
 			<IconSymbol
 				name="chevron.right"
 				size={20}
-				color={NetflixColors.text.muted}
+				color="rgba(255, 255, 255, 0.4)"
 				style={styles.chevron}
 			/>
 		</TouchableOpacity>
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
 		marginVertical: 8,
 		borderRadius: 12,
 		borderWidth: 1,
-		backgroundColor: NetflixColors.background.card,
-		borderColor: NetflixColors.border.default,
+		backgroundColor: "rgba(255, 255, 255, 0.05)",
+		borderColor: "rgba(255, 255, 255, 0.1)",
 		minHeight: 100,
 	},
 	iconContainer: {
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 		borderRadius: 12,
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: `${NetflixColors.accent.primary}15`,
+		backgroundColor: "rgba(37, 99, 235, 0.15)",
 		marginRight: 16,
 	},
 	content: {
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
 		fontWeight: "700",
 		flex: 1,
 		marginRight: 8,
-		color: NetflixColors.text.primary,
 	},
 	metadata: {
 		flexDirection: "row",
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
 	},
 	metadataText: {
 		fontSize: 13,
-		color: NetflixColors.text.secondary,
+		opacity: 0.6,
 		marginLeft: 4,
 		textTransform: "capitalize",
 	},
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
 		height: 5,
 		borderRadius: 2.5,
 		marginRight: 6,
-		backgroundColor: NetflixColors.accent.primary,
+		backgroundColor: CoreColors.primaryBlue,
 	},
 	chevron: {
 		marginLeft: 8,

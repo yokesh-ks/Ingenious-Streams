@@ -2,7 +2,7 @@ import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { ThemedText } from "@/components/themed-text";
-import { NetflixColors } from "@/constants/theme";
+import { BrandGradient, CoreColors } from "@/constants/theme";
 
 interface LanguageCardHorizontalProps {
 	language: string;
@@ -12,28 +12,28 @@ interface LanguageCardHorizontalProps {
 	height?: number;
 }
 
-// Netflix-appropriate language colors for gradients
+// Ingenious Streams brand-appropriate language colors for gradients
 const LANGUAGE_COLORS: Record<string, string> = {
-	Hindi: "#C11119", // Deep red
-	English: "#DB202C", // Netflix red variant
-	Tamil: "#8B0000", // Dark red
-	Telugu: "#B8860B", // Dark golden
-	Kannada: "#8B4513", // Saddle brown
-	Malayalam: "#2F4F4F", // Dark slate gray
-	Bengali: "#483D8B", // Dark slate blue
-	Marathi: "#8B008B", // Dark magenta
-	Punjabi: "#CD5C5C", // Indian red
-	Gujarati: "#556B2F", // Dark olive green
+	Hindi: BrandGradient.electricPurple, // Electric Purple
+	English: CoreColors.primaryBlue, // Primary Blue
+	Tamil: BrandGradient.magentaPink, // Magenta Pink
+	Telugu: BrandGradient.sunsetOrange, // Sunset Orange
+	Kannada: CoreColors.vibrantPink, // Vibrant Pink
+	Malayalam: BrandGradient.oceanBlue, // Ocean Blue
+	Bengali: BrandGradient.electricPurple, // Electric Purple
+	Marathi: BrandGradient.magentaPink, // Magenta Pink
+	Punjabi: BrandGradient.sunsetOrange, // Sunset Orange
+	Gujarati: CoreColors.primaryBlue, // Primary Blue
 };
 
 export function LanguageCardHorizontal({
 	language,
 	channelCount,
 	onPress,
-	width = 300,
-	height = 170,
+	width = 160,
+	height = 90,
 }: LanguageCardHorizontalProps) {
-	const cardColor = LANGUAGE_COLORS[language] || NetflixColors.accent.primary;
+	const cardColor = LANGUAGE_COLORS[language] || CoreColors.primaryBlue;
 
 	const handlePress = () => {
 		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -67,21 +67,21 @@ const styles = StyleSheet.create({
 		borderRadius: 12,
 		overflow: "hidden",
 		borderWidth: 1,
-		borderColor: NetflixColors.border.default,
+		borderColor: "rgba(255, 255, 255, 0.2)",
 	},
 	gradient: {
 		flex: 1,
 		justifyContent: "flex-end",
-		padding: 20,
+		padding: 10,
 	},
 	language: {
-		fontSize: 26,
+		fontSize: 16,
 		fontWeight: "900",
-		color: NetflixColors.text.primary,
-		marginBottom: 4,
+		color: "#FFFFFF",
+		marginBottom: 2,
 	},
 	count: {
-		fontSize: 14,
-		color: NetflixColors.text.secondary,
+		fontSize: 10,
+		color: "rgba(255, 255, 255, 0.8)",
 	},
 });

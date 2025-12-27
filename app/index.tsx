@@ -9,7 +9,7 @@ import {
 import { LanguageCardHorizontal } from "@/components/channels/language-card-horizontal";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { NetflixColors } from "@/constants/theme";
+import { CoreColors } from "@/constants/theme";
 import { useChannels } from "@/hooks/use-channels";
 
 export default function HomeScreen() {
@@ -30,7 +30,7 @@ export default function HomeScreen() {
 						<View style={styles.loadingContainer}>
 							<ActivityIndicator
 								size="large"
-								color={NetflixColors.accent.primary}
+								color={CoreColors.primaryBlue}
 							/>
 						</View>
 					) : (
@@ -47,7 +47,7 @@ export default function HomeScreen() {
 							keyExtractor={(item) => item.language || item}
 							showsHorizontalScrollIndicator={false}
 							contentContainerStyle={styles.carousel}
-							snapToInterval={316} // cardWidth (300) + spacing (16)
+							snapToInterval={176} // cardWidth (160) + spacing (16)
 							decelerationRate="fast"
 						/>
 					)}
@@ -60,7 +60,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: NetflixColors.background.primary,
 	},
 	content: {
 		flex: 1,
@@ -71,7 +70,6 @@ const styles = StyleSheet.create({
 	sectionTitle: {
 		fontSize: 22,
 		fontWeight: "900",
-		color: NetflixColors.text.primary,
 		marginBottom: 20,
 		paddingHorizontal: 20,
 	},

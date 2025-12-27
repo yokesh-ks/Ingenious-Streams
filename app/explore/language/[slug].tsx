@@ -2,7 +2,6 @@ import { ChannelList } from "@/components/channels/channel-list";
 import { SearchBar } from "@/components/channels/search-bar";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { NetflixColors } from "@/constants/theme";
 import { api } from "@/services/api";
 import { useLocalSearchParams, Stack } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
@@ -108,7 +107,6 @@ export default function LanguageDetailScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: NetflixColors.background.primary,
 	},
 	header: {
 		paddingHorizontal: 20,
@@ -123,6 +121,6 @@ const styles = StyleSheet.create({
 	},
 	subtitle: {
 		fontSize: 16,
-		color: NetflixColors.text.secondary,
+		opacity: 0.6,
 	},
 });

@@ -10,7 +10,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Collapsible } from "@/components/ui/collapsible";
 import { THEME_OPTIONS, VIDEO_QUALITY_OPTIONS } from "@/constants/categories";
-import { NetflixColors } from "@/constants/theme";
+import { CoreColors, NeutralColors } from "@/constants/theme";
 import { useSettings } from "@/hooks/use-settings";
 import type { Theme, VideoQuality } from "@/types/channel";
 
@@ -27,10 +27,10 @@ export default function SettingsScreen() {
 					styles.optionButton,
 					{
 						borderColor: isSelected
-							? NetflixColors.accent.primary
-							: NetflixColors.border.default,
+							? CoreColors.primaryBlue
+							: NeutralColors.border.slateLight,
 						backgroundColor: isSelected
-							? `${NetflixColors.accent.primary}20`
+							? "rgba(37, 99, 235, 0.2)"
 							: "transparent",
 					},
 				]}
@@ -39,7 +39,7 @@ export default function SettingsScreen() {
 				<ThemedText
 					style={[
 						styles.optionText,
-						isSelected && { color: NetflixColors.accent.primary },
+						isSelected && { color: CoreColors.primaryBlue },
 					]}
 				>
 					{theme.charAt(0).toUpperCase() + theme.slice(1)}
@@ -57,10 +57,10 @@ export default function SettingsScreen() {
 					styles.optionButton,
 					{
 						borderColor: isSelected
-							? NetflixColors.accent.primary
-							: NetflixColors.border.default,
+							? CoreColors.primaryBlue
+							: NeutralColors.border.slateLight,
 						backgroundColor: isSelected
-							? `${NetflixColors.accent.primary}20`
+							? "rgba(37, 99, 235, 0.2)"
 							: "transparent",
 					},
 				]}
@@ -69,7 +69,7 @@ export default function SettingsScreen() {
 				<ThemedText
 					style={[
 						styles.optionText,
-						isSelected && { color: NetflixColors.accent.primary },
+						isSelected && { color: CoreColors.primaryBlue },
 					]}
 				>
 					{quality.toUpperCase()}
@@ -119,12 +119,12 @@ export default function SettingsScreen() {
 									value={settings.parentalControlsEnabled}
 									onValueChange={toggleParentalControls}
 									trackColor={{
-										false: NetflixColors.text.disabled,
-										true: `${NetflixColors.accent.primary}80`,
+										false: "#595959",
+										true: "rgba(37, 99, 235, 0.5)",
 									}}
 									thumbColor={
 										settings.parentalControlsEnabled
-											? NetflixColors.accent.primary
+											? CoreColors.primaryBlue
 											: "#f4f3f4"
 									}
 								/>
@@ -170,7 +170,6 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: NetflixColors.background.secondary,
 	},
 	scrollContent: {
 		paddingTop: 16,
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
 	},
 	sectionDescription: {
 		fontSize: 14,
-		color: NetflixColors.text.secondary,
+		opacity: 0.6,
 		marginBottom: 16,
 	},
 	optionsGrid: {
@@ -218,7 +217,7 @@ const styles = StyleSheet.create({
 	},
 	infoLabel: {
 		fontSize: 15,
-		color: NetflixColors.text.secondary,
+		opacity: 0.6,
 	},
 	infoValue: {
 		fontSize: 15,

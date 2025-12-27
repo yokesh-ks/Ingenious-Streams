@@ -1,7 +1,7 @@
 import { FlatList, RefreshControl, StyleSheet } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { NetflixColors } from "@/constants/theme";
+import { CoreColors } from "@/constants/theme";
 import type { Channel } from "@/types/channel";
 import { ChannelCard } from "./channel-card";
 
@@ -53,7 +53,7 @@ export function ChannelList({
 					<RefreshControl
 						refreshing={refreshing}
 						onRefresh={onRefresh}
-						tintColor={NetflixColors.accent.primary}
+						tintColor={CoreColors.primaryBlue}
 					/>
 				) : undefined
 			}
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
 	},
 	emptyText: {
 		fontSize: 16,
-		color: NetflixColors.text.secondary,
+		opacity: 0.6,
 	},
 });
